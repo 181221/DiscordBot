@@ -24,14 +24,27 @@ public class ReadyListener extends ListenerAdapter{
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContent();
-        if(message.startsWith("finnseminar")) {
-            String name = event.getAuthor().getName();
-            String response = name + ", hello and welcome ";
-            event.getChannel().sendMessage("Executing file...").queue();
-            event.getChannel().sendMessage(kjorFil()).queue();
+        if(!(event.getAuthor().getName().equals("BotenAnna"))){
+            switch (message.toLowerCase()) {
+                case "hei":
+                    event.getChannel().sendMessage("Skriv inn en commando").queue();
+                    break;
+                case "finnseminar":
+                    String melding1 = "Finner alle ledige seminarrom";
+                    event.getChannel().sendMessage(melding1).queue();
+                    event.getChannel().sendMessage("Executing file...").queue();
+                    event.getChannel().sendMessage(kjorFil(event)).queue();
+                    break;
+                default:
+                    System.out.println("lol");
+                    String melding = "Hei " + event.getAuthor().getName() + " hva kan jeg hjelpe deg med?";
+                    event.getChannel().sendMessage(melding).queue();
+        }}else {
+
         }
+
     }
-    private String kjorFil() {
+    private String kjorFil(MessageReceivedEvent event) {
         String melding = "";
         try {
             String ss = null;
@@ -43,11 +56,10 @@ public class ReadyListener extends ListenerAdapter{
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            System.out.println("Here is the standard output of the command:\n");
             while ((ss = stdInput.readLine()) != null) {
+                event.getChannel().sendMessage(ss).queue();
                 System.out.println(ss);
             }
-            System.out.println("Here is the standard error of the command (if any):\n");
             while ((ss = stdError.readLine()) != null) {
                 System.out.println(ss);
             }
