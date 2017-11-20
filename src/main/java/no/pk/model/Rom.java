@@ -52,10 +52,7 @@ public class Rom {
     @Override
     public String toString() {
         return "Rom{" +
-                "navn='" + navn + '\'' +
-                ", erOpptatt=" + harHendelser +
-                ", hendelser=" + hendelser +
-                '}';
+                "navn='" + navn + '\'';
     }
 
     @Override

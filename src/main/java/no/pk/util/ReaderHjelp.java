@@ -108,8 +108,8 @@ public class ReaderHjelp {
             for (int i = 0; i < ledigehendelser.size() - 1 && !funnet; i++) {
                 Hendelse h = ledigehendelser.get(i);
                 Hendelse h1 = ledigehendelser.get(i+1);
-                int start = Integer.parseInt(h.getStart().toString().substring(0, 2));
-                int slutt = Integer.parseInt(h1.getSlutt().toString().substring(0, 2));
+                int start = Integer.parseInt(h.getStart().substring(0, 2));
+                int slutt = Integer.parseInt(h1.getSlutt().substring(0, 2));
                 System.out.println("Start : " + start + " Slutt " + slutt + " nå: " + naa);
                 if(naa >= start  && naa <= slutt ) {
                     rommet = "Rom " + h.getRom() + " er ledig til " + slutt;
