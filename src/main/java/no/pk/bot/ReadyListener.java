@@ -4,17 +4,39 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import no.pk.attributter.Lenker;
 import no.pk.attributter.Verdi;
 import no.pk.util.ReaderHjelp;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static no.pk.util.CsvReaderUtil.readCSVInternett;
 
 public class ReadyListener extends ListenerAdapter{
+    /**
+     * Skriver ut alle FINN LEDIGE AUDITORIUM OG SEMINARROM KRONSTAD
+     *
+     * @throws IOException
+     */
+    public static String hentLedigDagensSeminarogAuditorieRom(String type) throws IOException {
+        ReaderHjelp reader = readCSVInternett("https://no.timeedit.net/web/hib/db1/service/ri1AY6YYcnd8v5QYwYQrxgb1ZxgYxm98KaYravr5jY5awSadjc8vmvZQgQmZXxcYYy0Y0ZofQ0.html");
+        String melding = "";
+        switch (type) {
+            case Verdi.LEDIGENAA:
+                reader.finnAlleLedige();
+                melding = reader.LedigNaa();
+                break;
+            case Verdi.LEDIGE:
+                melding = reader.lagMsgFinnLedige();
+                break;
+            case Verdi.ALLEROM:
+                melding = reader.lagMsgFinnAlleRom();
+                break;
+            default:
+                melding = "Skriv inn en av tre flølgene kommandoer: \"ledignaa\" \"ledige\" \"allerom\"";
+        }
+        return melding;
+    }
+
     @Override
     public void onReady(ReadyEvent e) {
         String out ="\nThis bot is running on the following servers: \n";
@@ -64,28 +86,6 @@ public class ReadyListener extends ListenerAdapter{
 
         }
 
-    }
-    /**
-     * Skriver ut alle FINN LEDIGE AUDITORIUM OG SEMINARROM KRONSTAD
-     * @throws IOException
-     */
-    public static String hentLedigDagensSeminarogAuditorieRom(String type) throws IOException {
-        ReaderHjelp reader = readCSVInternett(Lenker.SEMINAR_AUDITORIUM);
-        String melding = "";
-        switch (type) {
-            case Verdi.LEDIGENAA:
-                melding = reader.LedigNaa();
-                break;
-            case Verdi.LEDIGE:
-                melding = reader.lagMsgFinnLedige();
-                break;
-            case Verdi.ALLEROM:
-                melding = reader.lagMsgFinnAlleRom();
-                break;
-            default:
-                melding = "Skriv inn en av tre flølgene kommandoer: \"ledignaa\" \"ledige\" \"allerom\"";
-        }
-        return melding;
     }
 
     private String kjorFil(MessageReceivedEvent event) {

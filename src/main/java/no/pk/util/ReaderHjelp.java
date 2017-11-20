@@ -33,6 +33,7 @@ public class ReaderHjelp {
         if (!inneholder(romnavn)) {
             Rom r = lagRom(romnavn);
             r.getHendelser().add(h);
+            h.setRom(r);
             allerom.add(r);
         } else {
             finnRomOgLeggTil(romnavn, h);
@@ -64,6 +65,7 @@ public class ReaderHjelp {
             if (rom.getNavn() != null) {
                 if (r.equals(rom.getNavn())) {
                     allerom.get(i).getHendelser().add(h);
+                    h.setRom(allerom.get(i));
                 }
             }
         }
@@ -101,12 +103,14 @@ public class ReaderHjelp {
         int naa = RomUtil.hentTime();
         boolean funnet = false;
         String rommet = "Ingen ledige nå";
+        System.out.println("før");
         if(ledigehendelser != null){
             for (int i = 0; i < ledigehendelser.size() - 1 && !funnet; i++) {
                 Hendelse h = ledigehendelser.get(i);
                 Hendelse h1 = ledigehendelser.get(i+1);
                 int start = Integer.parseInt(h.getStart().toString().substring(0, 2));
                 int slutt = Integer.parseInt(h1.getSlutt().toString().substring(0, 2));
+                System.out.println("Start : " + start + " Slutt " + slutt + " nå: " + naa);
                 if(naa >= start  && naa <= slutt ) {
                     rommet = "Rom " + h.getRom() + " er ledig til " + slutt;
                     funnet = true;
