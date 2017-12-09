@@ -1,11 +1,11 @@
-package no.pk.klient;
+package no.pederyo.klient;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
-import no.pk.bot.ReadyListener;
+import no.pederyo.bot.ReadyListener;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class Main {
     public static JDA jda;
     public static void main(String[] args) throws IOException, InterruptedException {
         JDABuilder builder = new JDABuilder(AccountType.BOT).addEventListener(new ReadyListener());
-        builder.setToken(System.getenv("DISCORD_BOT"));
+        builder.setToken(args[0]);
         builder.setAutoReconnect(true);
         builder.setStatus(OnlineStatus.ONLINE);
         try {

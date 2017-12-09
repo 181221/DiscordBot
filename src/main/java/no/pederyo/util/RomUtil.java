@@ -1,4 +1,4 @@
-package no.pk.util;
+package no.pederyo.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

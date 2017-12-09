@@ -1,7 +1,7 @@
-package no.pk.util;
+package no.pederyo.util;
 
-import no.pk.model.Hendelse;
-import no.pk.model.Rom;
+import no.pederyo.model.Hendelse;
+import no.pederyo.model.Rom;
 
 import java.util.ArrayList;
 
@@ -76,9 +76,11 @@ public class ReaderHjelp {
      */
     public String lagMsgFinnLedige() {
         StringBuilder sb = new StringBuilder();
-        for (String s : finnAlleLedige()) {
-            sb.append(s);
-            sb.append("\n");
+        if (ledigerom.size() != 0) {
+            for (String s : ledigerom) {
+                sb.append(s);
+                sb.append("\n");
+            }
         }
         return sb.toString();
     }
@@ -104,13 +106,12 @@ public class ReaderHjelp {
         boolean funnet = false;
         String rommet = "Ingen ledige nå";
         System.out.println("før");
-        if(ledigehendelser != null){
+        if (ledigehendelser.size() != 0) {
             for (int i = 0; i < ledigehendelser.size() - 1 && !funnet; i++) {
                 Hendelse h = ledigehendelser.get(i);
                 Hendelse h1 = ledigehendelser.get(i+1);
                 int start = Integer.parseInt(h.getStart().substring(0, 2));
                 int slutt = Integer.parseInt(h1.getSlutt().substring(0, 2));
-                System.out.println("Start : " + start + " Slutt " + slutt + " nå: " + naa);
                 if(naa >= start  && naa <= slutt ) {
                     rommet = "Rom " + h.getRom() + " er ledig til " + slutt;
                     funnet = true;
@@ -140,9 +141,11 @@ public class ReaderHjelp {
      */
     public String lagMsg() {
         StringBuilder sb = new StringBuilder();
-        for (String s : finnAlleLedige()) {
-            sb.append(s);
-            sb.append("\n");
+        if (ledigerom.size() != 0) {
+            for (String s : ledigerom) {
+                sb.append(s);
+                sb.append("\n");
+            }
         }
         return sb.toString();
     }
@@ -151,22 +154,26 @@ public class ReaderHjelp {
      * Retrurnerer en liste med alle ledige rom.
      * @return
      */
-    public ArrayList<String> finnAlleLedige() {
+    public boolean finnAlleLedige() {
         String ledige;
-        for (int i = 0; i < allerom.size(); i++) {
-            Rom r = allerom.get(i);
-            int lengde = r.getHendelser().size();
-            for (int j = 0; j < lengde - 1; j++) {
-                Hendelse h = r.getHendelser().get(j);
-                Hendelse h1 = r.getHendelser().get(j + 1);
-                if (erLedig(h, h1)) {
-                    ledige = "Rom: " + r.getNavn() + " Er ledig fra: " + h.getSlutt() + " til: " + h1.getStart();
-                    ledigerom.add(ledige);
-                    ledigehendelser.add(h);
+        boolean erLedig = false;
+        if (allerom.size() != 0) {
+            for (int i = 0; i < allerom.size(); i++) {
+                Rom r = allerom.get(i);
+                int lengde = r.getHendelser().size();
+                for (int j = 0; j < lengde - 1; j++) {
+                    Hendelse h = r.getHendelser().get(j);
+                    Hendelse h1 = r.getHendelser().get(j + 1);
+                    if (erLedig(h, h1)) {
+                        ledige = "Rom: " + r.getNavn() + " Er ledig fra: " + h.getSlutt() + " til: " + h1.getStart();
+                        ledigerom.add(ledige);
+                        ledigehendelser.add(h);
+                        erLedig = true;
+                    }
                 }
             }
         }
-        return ledigerom;
+        return erLedig;
     }
 
 

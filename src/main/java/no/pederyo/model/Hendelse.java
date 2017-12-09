@@ -1,4 +1,4 @@
-package no.pk.model;
+package no.pederyo.model;
 
 public class Hendelse {
     private String dato;

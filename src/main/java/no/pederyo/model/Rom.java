@@ -1,4 +1,4 @@
-package no.pk.model;
+package no.pederyo.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package no.pk.attributter;
+package no.pederyo.attributter;
 
 public class Verdi {
     public static final String LEDIGE = "ledige";
