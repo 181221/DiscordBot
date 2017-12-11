@@ -22,6 +22,7 @@ public class ReadyListener extends ListenerAdapter {
     public ReadyListener() {
         try {
             System.out.println("starter reader");
+            reader = new ReaderHjelp();
             reader = readCSVInternett(SEMINARROM);
         } catch (IOException e) {
             e.printStackTrace();
