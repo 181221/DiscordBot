@@ -51,11 +51,9 @@ public class Hendelse {
 
     @Override
     public String toString() {
-        return "Hendelse{" +
+        return "" +
                 "dato='" + dato + '\'' +
                 ", start='" + start + '\'' +
-                ", slutt='" + slutt + '\'' +
-                ", rom=" + rom +
-                '}';
+                ", slutt='" + slutt + '\'';
     }
 }

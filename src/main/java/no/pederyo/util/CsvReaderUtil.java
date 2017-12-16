@@ -1,5 +1,7 @@
 package no.pederyo.util;
 
+import no.pederyo.logg.Logg;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,7 +30,8 @@ public class CsvReaderUtil {
                 }
                 br.close();
             } else {
-                System.out.println("KOMMER IKKE INN PÅ LENKEN!");
+                String melding = "Connection failed.. " + url;
+                Logg.skrivTilLogg(melding);
             }
         } catch (MalformedURLException e) {
             System.out.println(e);

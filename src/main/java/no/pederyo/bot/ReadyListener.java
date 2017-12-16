@@ -4,6 +4,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import no.pederyo.logg.Logg;
 import no.pederyo.util.ReaderHjelp;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import static no.pederyo.util.CsvReaderUtil.readCSVInternett;
 
 public class ReadyListener extends ListenerAdapter {
-    public static final String SEMINARROM = "https://no.timeedit.net/web/hib/db1/service/ri1AY6YYcnd8v5QYwYQrxgb1ZxgYxm98KaYravr5jY5awSadjc8vmvZQgQmZXxcYYy0Y0ZofQ0.html";
+    public static final String SEMINARROM = "https://no.timeedit.net/web/hib/db1/service/ri1AY6YYcnd8v5QYwYQrxgb1ZxgYxm98KaYravr5jY5awSadjc8vm5ZQ2Q562x50Yy5603W606g5Z53.html";
     public static ReaderHjelp reader;
 
     /**
@@ -24,6 +25,7 @@ public class ReadyListener extends ListenerAdapter {
             System.out.println("starter reader");
             reader = new ReaderHjelp();
             reader = readCSVInternett(SEMINARROM);
+            reader.loggRomOgHendelse();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,7 +106,7 @@ public class ReadyListener extends ListenerAdapter {
         for (Guild g : e.getJDA().getGuilds()) {
             out += g.getName() + " (" + g.getId() + ") \n";
         }
-        System.out.println(out);
+        Logg.skrivTilLogg(out);
     }
 
 

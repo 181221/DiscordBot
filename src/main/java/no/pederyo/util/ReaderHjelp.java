@@ -1,5 +1,6 @@
 package no.pederyo.util;
 
+import no.pederyo.logg.Logg;
 import no.pederyo.model.Hendelse;
 import no.pederyo.model.Rom;
 
@@ -136,6 +137,23 @@ public class ReaderHjelp {
     }
 
     /**
+     * Logg rom og hendelser.
+     *
+     * @param
+     */
+    public void loggRomOgHendelse() {
+        StringBuilder sb = new StringBuilder();
+        for (Rom r : allerom) {
+            sb.append(r.getNavn() + " ");
+            for (Hendelse h : r.getHendelser()) {
+                sb.append(h.toString() + ", ");
+            }
+            sb.append("\n");
+        }
+        Logg.skrivTilLogg(sb.toString());
+    }
+
+    /**
      * Lager en string over alle ledige rom.
      * @return
      */
@@ -161,14 +179,25 @@ public class ReaderHjelp {
             for (int i = 0; i < allerom.size(); i++) {
                 Rom r = allerom.get(i);
                 int lengde = r.getHendelser().size();
-                for (int j = 0; j < lengde - 1; j++) {
-                    Hendelse h = r.getHendelser().get(j);
-                    Hendelse h1 = r.getHendelser().get(j + 1);
-                    if (erLedig(h, h1)) {
-                        ledige = "Rom: " + r.getNavn() + " Er ledig fra: " + h.getSlutt() + " til: " + h1.getStart();
-                        ledigerom.add(ledige);
-                        ledigehendelser.add(h);
-                        erLedig = true;
+                Hendelse h = r.getHendelser().get(0);
+                if (lengde == 0) {// Rommet er ledig hele dagen.
+                    ledige = "Rom: " + r.getNavn() + " Er ledig i hele dag!";
+                    ledigerom.add(ledige);
+                    erLedig = true;
+                } else if (lengde == 1) { // Bare ett event og resten av dagen ledig.
+                    ledige = "Rom: " + r.getNavn() + " Er opptatt fra: " + h.getStart() + " til " + h.getSlutt();
+                    ledigerom.add(ledige);
+                    erLedig = true;
+                } else {
+                    for (int j = 0; j < lengde - 1; j++) {
+                        h = r.getHendelser().get(j);
+                        Hendelse h1 = r.getHendelser().get(j + 1);
+                        if (erLedig(h, h1)) {
+                            ledige = "Rom: " + r.getNavn() + " Er ledig fra: " + h.getSlutt() + " til: " + h1.getStart();
+                            ledigerom.add(ledige);
+                            ledigehendelser.add(h);
+                            erLedig = true;
+                        }
                     }
                 }
             }
