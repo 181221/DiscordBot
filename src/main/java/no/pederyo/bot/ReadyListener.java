@@ -47,7 +47,7 @@ public class ReadyListener extends ListenerAdapter {
                 case "/kommandoer":
                     melding = "Dette er kommandoer jeg kan utføre for deg!";
                     event.getChannel().sendMessage(melding).queue();
-                    melding = "ledig: finner ledig akkurat nå\n/allerom: allerom på urlen\n/sok romnavn";
+                    melding = "/ledig: finner ledig akkurat nå\n/allerom: allerom på urlen\n/sok romnavn";
                     event.getChannel().sendMessage(melding).queue();
                     break;
                 case "/allerom":

@@ -47,17 +47,22 @@ public class ReadyListenerHjelp {
     public void sokKommando(MessageReceivedEvent event) {
         String message = event.getMessage().getContent().toLowerCase();
         String melding = " ";
-        if (message.startsWith("sok")) {
+        if (message.startsWith("/sok")) {
             String[] kommand = event.getMessage().getContent().split(" ");
             if (kommand.length >= 2) {
                 for (int i = 1; i < kommand.length; i++) {
-                    if (CsvReader.alleRom.get(kommand[i].toUpperCase()) != null) {
-                        melding += kommand[i] + " \n";
-                        for (Hendelse h : CsvReader.alleRom.get(kommand[i].toUpperCase())) {
-                            melding += " Start " + h.getStart() + " Slutt " + h.getSlutt() + "\n";
+                    if (CsvReader.alleRom.keySet().contains(kommand[i].toUpperCase())) {
+                        if (CsvReader.alleRom.get(kommand[i]) != null) {
+                            melding += kommand[i] + " \n";
+                            for (Hendelse h : CsvReader.alleRom.get(kommand[i].toUpperCase())) {
+                                melding += " Start " + h.getStart() + " Slutt " + h.getSlutt() + "\n";
+                            }
+                        } else {
+                            melding += kommand[i] + " er ledig ut dagen. " + "\n";
                         }
+
                     } else {
-                        melding += "ingen rom med navnet " + kommand[i];
+                        melding += "Ingen rom med navnet " + kommand[i] + "\n";
                     }
                 }
                 event.getChannel().sendMessage(melding).queue();
