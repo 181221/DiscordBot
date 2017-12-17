@@ -1,15 +1,6 @@
-des 17, 2017 12:33:54 AM no.pederyo.logg.Logg skrivTilLogg
-INFO: C113 dato='17.12.2017', start='08:00', slutt='08:00', dato='18.12.2017', start='08:00', slutt='08:00', 
-C224 dato='17.12.2017', start='17:00', slutt='17:00', dato='18.12.2017', start='17:00', slutt='17:00', 
-Aud1 (B117) dato='18.12.2017', start='08:00', slutt='09:00', 
-B313 dato='18.12.2017', start='08:15', slutt='14:00', 
-Mimes Brønn dato='18.12.2017', start='09:00', slutt='15:00', 
-D110 dato='18.12.2017', start='11:00', slutt='13:00', 
-C122 dato='18.12.2017', start='11:15', slutt='14:00', dato='18.12.2017', start='14:15', slutt='17:00', 
-F105 dato='18.12.2017', start='11:15', slutt='14:00', 
-F106 dato='18.12.2017', start='12:30', slutt='16:30', 
-
-des 17, 2017 12:33:55 AM no.pederyo.logg.Logg skrivTilLogg
+des 17, 2017 7:14:57 PM no.pederyo.logg.Logg skrivTilLogg
+INFO: 
+des 17, 2017 7:14:59 PM no.pederyo.logg.Logg skrivTilLogg
 INFO: 
 This bot is running on the following servers: 
 gruppe3 (369537987836510230) 

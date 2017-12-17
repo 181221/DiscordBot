@@ -5,9 +5,12 @@ import no.pederyo.model.Hendelse;
 import no.pederyo.model.Rom;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static no.pederyo.util.CsvReaderUtil.alleRom;
 
 public class ReaderHjelp {
-    private ArrayList<Rom> allerom;
+    private ArrayList<Rom> romMedHendelser;
     private ArrayList<String> ledigerom;
     private ArrayList<Hendelse> ledigehendelser;
 
@@ -15,9 +18,25 @@ public class ReaderHjelp {
      * Oppretter 3 lister. Allerom, alle ledigerom og alle ledigehendelser.
      */
     public ReaderHjelp() {
-        allerom = new ArrayList<>();
+        romMedHendelser = new ArrayList<>();
         ledigerom = new ArrayList<>();
         ledigehendelser= new ArrayList<>();
+    }
+
+    public static synchronized void leggTil(String r, Hendelse h, HashMap<String, ArrayList<Hendelse>> rom) {
+        ArrayList<Hendelse> k = rom.get(r);
+        if (k == null) {
+            k = new ArrayList<>();
+            k.add(h);
+            rom.put(r, k);
+        } else {
+            if (!k.contains(h)) k.add(h);
+        }
+    }
+
+    public static int parseTime(String time) {
+        String ferdig = time.substring(0, 2);
+        return Integer.parseInt(ferdig);
     }
 
     /**
@@ -31,14 +50,8 @@ public class ReaderHjelp {
         String slutt = felt[3].substring(1);
         String romnavn = RomUtil.parseRomNavn(felt[5].substring(1));
         Hendelse h = lagHendelse(dato, start, slutt);
-        if (!inneholder(romnavn)) {
-            Rom r = lagRom(romnavn);
-            r.getHendelser().add(h);
-            h.setRom(r);
-            allerom.add(r);
-        } else {
-            finnRomOgLeggTil(romnavn, h);
-        }
+        h.setRom(lagRom(romnavn));
+        leggTil(romnavn, h, CsvReaderUtil.alleRom);
     }
 
     /**
@@ -47,8 +60,8 @@ public class ReaderHjelp {
      * @return
      */
     private boolean inneholder(String r) {
-        for (int i = 0; i < allerom.size(); i++) {
-            if (allerom.get(i).getNavn().equals(r)) {
+        for (int i = 0; i < romMedHendelser.size(); i++) {
+            if (romMedHendelser.get(i).getNavn().equals(r)) {
                 return true;
             }
         }
@@ -61,16 +74,17 @@ public class ReaderHjelp {
      * @param h
      */
     private void finnRomOgLeggTil(String r, Hendelse h) {
-        for (int i = 0; i < allerom.size(); i++) {
-            Rom rom = allerom.get(i);
+        for (int i = 0; i < romMedHendelser.size(); i++) {
+            Rom rom = romMedHendelser.get(i);
             if (rom.getNavn() != null) {
                 if (r.equals(rom.getNavn())) {
-                    allerom.get(i).getHendelser().add(h);
-                    h.setRom(allerom.get(i));
+                    romMedHendelser.get(i).getHendelser().add(h);
+                    h.setRom(romMedHendelser.get(i));
                 }
             }
         }
     }
+
     /**
      * Lager en string over alle ledige rom.
      * @return
@@ -85,41 +99,18 @@ public class ReaderHjelp {
         }
         return sb.toString();
     }
+
     /**
      * Lager en string over alle ledige rom.
      * @return
      */
-    public String lagMsgFinnAlleRom() {
+    public String lagMsgFinnAlleRom(HashMap<String, ArrayList<Hendelse>> rom) {
         StringBuilder sb = new StringBuilder();
-        for (Rom r : allerom) {
-            sb.append(r.getNavn());
-            sb.append("\n");
+        for (String r : rom.keySet()) {
+            sb.append(r);
+            sb.append(", ");
         }
-        return sb.toString();
-    }
-
-    /**
-     * sjekker om et rom er ledig gitt klokkeslett.
-     * @return
-     */
-    public String LedigNaa() {
-        int naa = RomUtil.hentTime();
-        boolean funnet = false;
-        String rommet = "Ingen ledige nå";
-        System.out.println("før");
-        if (ledigehendelser.size() != 0) {
-            for (int i = 0; i < ledigehendelser.size() - 1 && !funnet; i++) {
-                Hendelse h = ledigehendelser.get(i);
-                Hendelse h1 = ledigehendelser.get(i+1);
-                int start = Integer.parseInt(h.getStart().substring(0, 2));
-                int slutt = Integer.parseInt(h1.getSlutt().substring(0, 2));
-                if(naa >= start  && naa <= slutt ) {
-                    rommet = "Rom " + h.getRom() + " er ledig til " + slutt;
-                    funnet = true;
-                }
-            }
-        }
-        return rommet;
+        return sb.toString() + rom.size();
     }
 
     /**
@@ -127,7 +118,7 @@ public class ReaderHjelp {
      * @param
      */
     public void printUtRomOgHendelse() {
-        for (Rom r : allerom) {
+        for (Rom r : romMedHendelser) {
             System.out.print("romnavn " + r.getNavn() + " ");
             for (Hendelse h : r.getHendelser()) {
                 System.out.print(h.toString() + ", ");
@@ -143,7 +134,7 @@ public class ReaderHjelp {
      */
     public void loggRomOgHendelse() {
         StringBuilder sb = new StringBuilder();
-        for (Rom r : allerom) {
+        for (Rom r : romMedHendelser) {
             sb.append(r.getNavn() + " ");
             for (Hendelse h : r.getHendelser()) {
                 sb.append(h.toString() + ", ");
@@ -169,15 +160,72 @@ public class ReaderHjelp {
     }
 
     /**
-     * Retrurnerer en liste med alle ledige rom.
+     * Finner rom som ikke har hendelser.
+     * @return en liste med rom.
+     */
+    public ArrayList<Rom> finnTommeRom() {
+        ArrayList<Rom> rom = new ArrayList<>();
+        for (Rom r : romMedHendelser) {
+            if (!(CsvReaderUtil.alleRom.containsKey(r.getNavn()))) {
+                rom.add(r);
+            }
+        }
+        return rom;
+    }
+
+    public ArrayList<Hendelse> finnLedigeHendelser() {
+        //TODO
+
+        return null;
+    }
+
+    /**
+     * sjekker om et rom er ledig gitt klokkeslett.
      * @return
+     */
+    public ArrayList<String> LedigNaa() {
+        int naa = 8;//RomUtil.hentTime();
+        String rommet = "";
+        ArrayList<String> ledigeRom = new ArrayList<>();
+        int k = 0;
+        for (String rom : alleRom.keySet()) {
+            if (CsvReaderUtil.alleRom.get(rom) == null) {
+                //ledig nå
+                rommet = rom + " er ledig ut dagen.\n";
+                ledigeRom.add(rommet);
+                k++;
+            } else {
+                // sjekk om eventet er nå.
+                boolean funnet = false;
+                for (int j = 0; j < CsvReaderUtil.alleRom.get(rom).size() && !funnet; j++) {
+                    Hendelse h = CsvReaderUtil.alleRom.get(rom).get(j);
+                    int start = parseTime(h.getStart());
+                    if (naa + 2 <= start) { //ledig i
+                        // ledig
+                        rommet = rom + " er ledig til " + h.getStart() + "\n";
+                        ledigeRom.add(rommet);
+                        funnet = true;
+                        k++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return ledigeRom;
+    }
+
+    /**
+     * Finner alle ledige rom på skolen
+     *
+     * @return en liste med rom.
      */
     public boolean finnAlleLedige() {
         String ledige;
         boolean erLedig = false;
-        if (allerom.size() != 0) {
-            for (int i = 0; i < allerom.size(); i++) {
-                Rom r = allerom.get(i);
+        if (romMedHendelser.size() != 0) {
+            for (int i = 0; i < romMedHendelser.size(); i++) {
+                Rom r = romMedHendelser.get(i);
                 int lengde = r.getHendelser().size();
                 Hendelse h = r.getHendelser().get(0);
                 if (lengde == 0) {// Rommet er ledig hele dagen.
@@ -204,8 +252,6 @@ public class ReaderHjelp {
         }
         return erLedig;
     }
-
-
 
     /**
      * Sjekker om er ledig. Et rom er er ledig om differansen er større eller lik 1.
@@ -235,11 +281,11 @@ public class ReaderHjelp {
     }
 
     public ArrayList<Rom> getAllerom() {
-        return allerom;
+        return romMedHendelser;
     }
 
     public void setAllerom(ArrayList<Rom> allerom) {
-        this.allerom = allerom;
+        this.romMedHendelser = allerom;
     }
 
     public ArrayList<String> getLedigerom() {

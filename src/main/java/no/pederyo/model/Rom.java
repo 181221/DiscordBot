@@ -15,7 +15,7 @@ public class Rom {
 
     public Rom(String navn) {
         this.navn = navn;
-        harHendelser = null;
+        harHendelser = false;
         hendelser = new ArrayList<>();
     }
 
@@ -51,8 +51,7 @@ public class Rom {
 
     @Override
     public String toString() {
-        return "Rom{" +
-                "navn='" + navn + '\'';
+        return "Rom " + navn + '\'';
     }
 
     @Override

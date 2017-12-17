@@ -24,6 +24,7 @@ public class RomUtil {
         if (rom.charAt(0) == ' ') {
             rom = rom.substring(1);
         }
+
         return rom;
     }
     /**
@@ -31,9 +32,11 @@ public class RomUtil {
      * @return
      */
     public static int hentTime() {
-        DateFormat dateFormat = new SimpleDateFormat("HH");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
-        return Integer.parseInt(dateFormat.format(date));
+        String datoen = dateFormat.format(date);
+        String ferdig = datoen.substring(0, 2) + datoen.substring(3, 5);
+        return Integer.parseInt(ferdig);
     }
 
 
