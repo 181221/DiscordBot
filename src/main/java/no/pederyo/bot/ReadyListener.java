@@ -4,103 +4,36 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import no.pederyo.attributter.Linker;
 import no.pederyo.logg.Logg;
-import no.pederyo.model.Hendelse;
-import no.pederyo.util.CsvReaderUtil;
-import no.pederyo.util.ReaderHjelp;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static no.pederyo.util.CsvReaderUtil.readCSVInternett;
-import static no.pederyo.util.CsvReaderUtil.readRomCSV;
+import static no.pederyo.bot.CsvReader.readCSVInternett;
+import static no.pederyo.bot.CsvReader.readRomCSV;
 
 public class ReadyListener extends ListenerAdapter {
-    public static final String TESTLINK = "https://no.timeedit.net/web/hib/db1/service/ri1AY6YYcnd8v5QYwYQrxgb1ZxgYxm98KaYravr5jY5awSadjc8vm5ZQ0Q022x60Yy0505YgX6g5Z5353Yg.html";
-    public static final String SEMINARROM = "https://no.timeedit.net/web/hib/db1/service/ri1AY6YYcnd8v5QYwYQrxgb1ZxgYxm98KaYravr5jY5awSadjc8vm5ZQ2Q562x50Yy5603W606g5Z53.html";
-    public static ReaderHjelp reader;
-
+    private ReadyListenerHjelp rdh;
     /**
-     * Skriver ut alle FINN LEDIGE AUDITORIUM OG SEMINARROM KRONSTAD
-     *
+     * Finner alle Seminar og Auditorierom på skolen. Legger til i et HashMap. Henter så alle
+     * hendelsene til hvert av rommene og legger dem til rommene.
      * @throws IOException
      */
     public ReadyListener() {
         try {
-            reader = new ReaderHjelp();
             readRomCSV();
-            reader = readCSVInternett("https://no.timeedit.net/web/hib/db1/service/ri1AY6YYcnd8v5QYwYQrxgb1ZxgYxm98KaYravr5jY5awSadjc8vm5ZQ2Q052x50Yy5504W606g5Z04.html");
-            reader.loggRomOgHendelse();
+            readCSVInternett(Linker.SEMINARROM);
+            rdh = new ReadyListenerHjelp();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static boolean hentDagensLedigeRom(MessageReceivedEvent event) {
-        boolean kjoer = reader.finnAlleLedige();
-        String melding = "";
-        if (kjoer) {
-            melding = reader.lagMsgFinnLedige();
-        } else {
-            melding = "Ingen ledige rom idag!";
-        }
-        event.getChannel().sendMessage(melding).queue();
-        return kjoer;
-    }
-
-    public static boolean hentLedigeNaa(MessageReceivedEvent event) {
-        boolean kjoer = false;
-        ArrayList<String> ledigeRom = reader.LedigNaa();
-        String melding = "";
-        if (!ledigeRom.isEmpty()) {
-            kjoer = true;
-            for (String rom : ledigeRom) {
-                melding += rom;
-            }
-        } else {
-            melding = "Ingen ledige!";
-        }
-        event.getChannel().sendMessage(melding).queue();
-        return kjoer;
-    }
-
-    public static boolean hentAlleRom(MessageReceivedEvent event) {
-        String melding;
-        melding = reader.lagMsgFinnAlleRom(CsvReaderUtil.alleRom);
-        boolean funnet = true;
-        if (melding == null) {
-            melding = "Fant ingen rom";
-            funnet = false;
-        }
-        event.getChannel().sendMessage(melding).queue();
-        return funnet;
     }
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContent().toLowerCase();
         String melding = " ";
-        if (message.startsWith("sok")) {
-            //søker etter rom.
-            String[] kommand = event.getMessage().getContent().split(" ");
-            if (kommand.length >= 2) {
-                for (int i = 1; i < kommand.length; i++) {
-                    if (CsvReaderUtil.alleRom.get(kommand[i].toUpperCase()) != null) {
-                        melding += kommand[i] + " \n";
-                        for (Hendelse h : CsvReaderUtil.alleRom.get(kommand[i].toUpperCase())) {
-                            melding += " Start " + h.getStart() + " Slutt " + h.getSlutt() + "\n";
-                        }
-                    } else {
-                        melding += "ingen rom med navnet " + kommand[i];
-                    }
-                }
-                event.getChannel().sendMessage(melding).queue();
-            } else {
-                melding = "Skriv inn søke argumenter...";
-                event.getChannel().sendMessage(melding).queue();
-            }
-
-        }
+        rdh.sokKommando(event);
         if (!(event.getAuthor().getName().equals("Seminar-BoT"))) {
             switch (message) {
                 case "hei":
@@ -109,7 +42,7 @@ public class ReadyListener extends ListenerAdapter {
                 case "/ledig":
                     melding = "finner et ledig rom nå!";
                     event.getChannel().sendMessage(melding).queue();
-                    hentLedigeNaa(event);
+                    rdh.hentLedigeNaa(event);
                     break;
                 case "/kommandoer":
                     melding = "Dette er kommandoer jeg kan utføre for deg!";
@@ -118,9 +51,9 @@ public class ReadyListener extends ListenerAdapter {
                     event.getChannel().sendMessage(melding).queue();
                     break;
                 case "/allerom":
-                    melding = "henter alle rom på listen.\n" + SEMINARROM;
+                    melding = "henter alle rom på listen.\n" + Linker.SEMINARROM;
                     event.getChannel().sendMessage(melding).queue();
-                    hentAlleRom(event);
+                    rdh.hentAlleRom(event);
                     break;
             }
         }

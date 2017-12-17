@@ -1,7 +1,8 @@
-package no.pederyo.util;
+package no.pederyo.bot;
 
 import no.pederyo.logg.Logg;
 import no.pederyo.model.Hendelse;
+import no.pederyo.util.DatoOgTimeUtil;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -10,15 +11,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CsvReaderUtil {
+public class CsvReader {
     public static HashMap<String, ArrayList<Hendelse>> alleRom;
 
-    public static ReaderHjelp readCSVInternett(String urlen) throws IOException {
+    public static void readRomCSV() throws FileNotFoundException, IOException {
+        alleRom = new HashMap<>();
+        BufferedReader br = new BufferedReader(new FileReader("alleseminarogaud.csv"));
+        String line = br.readLine() + br.readLine() + br.readLine() + br.readLine();
+        while ((line = br.readLine()) != null) {
+            String felt = line.split(",")[5];
+            String romnavn = DatoOgTimeUtil.parseRomNavn(felt.substring(1));
+            alleRom.put(romnavn, null);
+        }
+    }
+
+    public static void readCSVInternett(String urlen) throws IOException {
         if (urlen.contains(".html")) {
             urlen = urlen.replace("html", "csv");
         }
         URL url = new URL(urlen);
-        ReaderHjelp reader = null;
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         try {
             if (connection.getResponseCode() == 200) {
@@ -26,10 +37,9 @@ public class CsvReaderUtil {
                 BufferedReader br = new BufferedReader(streamReader);
                 String line = br.readLine() + br.readLine() + br.readLine() + br.readLine();
                 String[] fieldsene;
-                reader = new ReaderHjelp();
                 while ((line = br.readLine()) != null && !line.isEmpty()) {
                     fieldsene = line.split(",");
-                    reader.setOppData(fieldsene);
+                    setOppData(fieldsene);
                 }
                 br.close();
             } else {
@@ -39,21 +49,21 @@ public class CsvReaderUtil {
         } catch (MalformedURLException e) {
             Logg.skrivTilLogg(e.getMessage());
         }
-        return reader;
     }
 
-    public static void readRomCSV() throws FileNotFoundException, IOException {
-        alleRom = new HashMap<>();
-        BufferedReader br = new BufferedReader(new FileReader("alleseminarogaud.csv"));
-        String line = br.readLine() + br.readLine() + br.readLine() + br.readLine();
-        while ((line = br.readLine()) != null) {
-            String felt = line.split(",")[5];
-            String romnavn = RomUtil.parseRomNavn(felt.substring(1));
-            alleRom.put(romnavn, null);
-        }
-    }
-
-    public static HashMap<String, ArrayList<Hendelse>> getAlleRom() {
-        return alleRom;
+    /**
+     * Setter opp data fra csv fil.
+     * Lager en liste med alle rommene fra csv filen.
+     *
+     * @param felt Datafelt fra csv fil.
+     */
+    private static void setOppData(String[] felt) {
+        String dato = felt[0];
+        String start = felt[1].substring(1);
+        String slutt = felt[3].substring(1);
+        String romnavn = DatoOgTimeUtil.parseRomNavn(felt[5].substring(1));
+        Hendelse h = CsvReaderHjelp.lagHendelse(dato, start, slutt);
+        h.setRom(CsvReaderHjelp.lagRom(romnavn));
+        CsvReaderHjelp.leggTil(romnavn, h, CsvReader.alleRom);
     }
 }

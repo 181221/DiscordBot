@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22437c13-05db-4adc-889e-b3fef69cb2d5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Discordbot.log.1.lck" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Discordbot.log.2.lck" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/klient/Test.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/klient/mainv2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="22437c13-05db-4adc-889e-b3fef69cb2d5" name="Default" comment="Major refactor">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReaderHjelp.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListenerHjelp.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/util/MeldingUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/util/RomFinnerUtil.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/klient/Test.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/klient/mainv2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/attributter/Verdi.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/attributter/Linker.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReader.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/util/RomUtil.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/util/DatoOgTimeUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DiscordBot.iws" afterPath="$PROJECT_DIR$/DiscordBot.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discordbot.log" afterPath="$PROJECT_DIR$/Discordbot.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListener.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/model/Rom.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/model/Rom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/no/pederyo/util/RomUtil.java" afterPath="$PROJECT_DIR$/src/main/java/no/pederyo/util/RomUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,28 +24,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="mainv2.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/mainv2.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="951">
-                    <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
@@ -53,51 +31,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="20" column="91" lean-forward="false" selection-start-line="20" selection-start-column="91" selection-end-line="20" selection-end-column="91" />
+              <caret line="20" column="89" lean-forward="true" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadyListener.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReadyListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2474">
-              <caret line="120" column="103" lean-forward="false" selection-start-line="120" selection-start-column="103" selection-end-line="120" selection-end-column="103" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rom.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/model/Rom.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1780">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CsvReaderUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2232#2233#0" expanded="true" />
-                <element signature="e#2262#2263#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="76" />
+            <state relative-caret-position="253">
+              <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReaderHjelp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java">
+      <file leaf-file-name="ReadyListenerHjelp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListenerHjelp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="254" column="7" lean-forward="true" selection-start-line="254" selection-start-column="7" selection-end-line="254" selection-end-column="7" />
+            <state relative-caret-position="253">
+              <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,35 +61,68 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NumberFormatException.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/NumberFormatException.java">
+      <file leaf-file-name="CsvReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RomUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/RomUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hendelse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/model/Hendelse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+            <state relative-caret-position="253">
+              <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
               <folding>
-                <element signature="e#821#822#0" expanded="true" />
-                <element signature="e#847#848#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Linker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/attributter/Linker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CsvReaderHjelp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReaderHjelp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RomFinnerUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/RomFinnerUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="67">
+              <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MeldingUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/MeldingUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatoOgTimeUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/DatoOgTimeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -189,11 +166,20 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/no/pederyo/model/Rom.java" />
         <option value="$PROJECT_DIR$/src/main/java/no/pederyo/klient/mainv2.java" />
+        <option value="$PROJECT_DIR$/Discordbot.log" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java" />
         <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/no/pederyo/klient/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/RomUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java" />
-        <option value="$PROJECT_DIR$/Discordbot.log" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderHjelp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/DatoOgTimeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/attributter/Linker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/MeldingUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/util/RomFinnerUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReaderHjelp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListenerHjelp.java" />
         <option value="$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListener.java" />
       </list>
     </option>
@@ -331,6 +317,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -525,10 +515,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pederyo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="attributter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1246,7 +1232,7 @@
       <workItem from="1512237132602" duration="277000" />
       <workItem from="1512856226766" duration="8233000" />
       <workItem from="1513460717859" duration="10731000" />
-      <workItem from="1513512148118" duration="21909000" />
+      <workItem from="1513512148118" duration="24467000" />
     </task>
     <task id="LOCAL-00001" summary="Finner ledige rom må fikse string builder">
       <created>1511167664068</created>
@@ -1276,11 +1262,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513467425403</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finner dagens ledige rom lagt til på hashmap">
+      <created>1513534626315</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1513534626315</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43835000" />
+    <option name="totallyTimeSpent" value="46393000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1309,11 +1302,11 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972524" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288926" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30058286" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14571191" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.023313904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41631973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18232931" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1338,7 +1331,9 @@
     <MESSAGE value="Clean up og klar for betatesting!" />
     <MESSAGE value="Lagt til readme" />
     <MESSAGE value="Lagt til logger og ordnet på finnledige algo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lagt til logger og ordnet på finnledige algo" />
+    <MESSAGE value="Finner dagens ledige rom lagt til på hashmap" />
+    <MESSAGE value="Major refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major refactor" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1366,7 +1361,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
           <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1375,24 +1372,22 @@
         <state relative-caret-position="152">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-            <element signature="e#933#934#0" expanded="true" />
-            <element signature="e#1155#1156#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+            <element signature="e#863#864#0" expanded="true" />
+            <element signature="e#908#909#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
           <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2232#2233#0" expanded="true" />
-            <element signature="e#2262#2263#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1401,9 +1396,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="13" column="50" lean-forward="false" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,21 +1429,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReaderHjelp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5966">
           <caret line="163" column="14" lean-forward="false" selection-start-line="163" selection-start-column="14" selection-end-line="163" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/attributter/Verdi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1511,14 +1496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="20" column="91" lean-forward="false" selection-start-line="20" selection-start-column="91" selection-end-line="20" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/model/Hendelse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -1538,44 +1515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/CsvReaderUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2232#2233#0" expanded="true" />
-            <element signature="e#2262#2263#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/model/Rom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1780">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/RomUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/ReaderHjelp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="254" column="7" lean-forward="true" selection-start-line="254" selection-start-column="7" selection-end-line="254" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Discordbot.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1588,16 +1527,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="951">
           <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="11" column="175" lean-forward="false" selection-start-line="11" selection-start-column="175" selection-end-line="11" selection-end-column="175" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/model/Rom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/attributter/Linker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="20" column="89" lean-forward="true" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/RomFinnerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/klient/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReaderHjelp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="76" />
+        <state relative-caret-position="283">
+          <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/MeldingUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListenerHjelp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/CsvReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1606,8 +1613,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/bot/ReadyListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2474">
-          <caret line="120" column="103" lean-forward="false" selection-start-line="120" selection-start-column="103" selection-end-line="120" selection-end-column="103" />
+        <state relative-caret-position="253">
+          <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/no/pederyo/util/DatoOgTimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding />
         </state>
       </provider>

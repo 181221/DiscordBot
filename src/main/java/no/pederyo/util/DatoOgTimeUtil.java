@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class RomUtil {
+public class DatoOgTimeUtil {
 
     public static String parseData(String data) {
         String dataString = data;
@@ -26,6 +26,11 @@ public class RomUtil {
         }
 
         return rom;
+    }
+
+    public static int parseTime(String time) {
+        String ferdig = time.substring(0, 2);
+        return Integer.parseInt(ferdig);
     }
     /**
      * Returnerer tidspunktet naa.
